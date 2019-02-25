@@ -29,6 +29,38 @@ def range(a, b, c):
     return max(a, max(b, c)) - min(a, min(b, c))
 
 
+# Your robot is at 0 on a number line. It decides to move n steps
+# but there are a few constraints! If the step he is taking is a multiple
+# of 3, then he will move 3 steps forward. If the step he is taking 
+# is a multiple of 5, then he will move 5 steps backward. Also, if the 
+# step is a multiple of 15, then he will move 8 steps forward. If the step
+# doesn't satisfy any of the above criteria, then simply move 1 step forward.
+# Implement the function robot_stepper that will output the final
+# position the robot will be at after n steps.
+# Examples:
+# 
+#   >>> robot_stepper(1)
+#   1
+#   >>> robot_stepper(3)
+#   5
+#   >>> robot_stepper(10)
+#   -6
+
+def robot_stepper(n):
+    sum = 0
+    i = 1
+    while (i < n + 1):
+        if (i % 3 == 0 and i % 5 == 0):
+            sum += 8
+        elif (i % 3 == 0):
+            sum += 3
+        elif (i % 5 == 0):
+            sum -= 10
+        else:
+            sum += 1
+        i += 1
+    return sum
+
 # Create a function is_leap_year(year) that determines whether
 # the given year is a leap year.
 #
