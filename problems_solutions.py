@@ -30,11 +30,11 @@ def range(a, b, c):
 
 
 # Your robot is at 0 on a number line. It decides to move n steps
-# but there are a few constraints! If the step he is taking is a multiple
-# of 3, then he will move 3 steps forward. If the step he is taking 
-# is a multiple of 5, then he will move 5 steps backward. Also, if the 
-# step is a multiple of 15, then he will move 8 steps forward. If the step
-# doesn't satisfy any of the above criteria, then simply move 1 step forward.
+# but there are a few constraints! If the step he is currently taking is a multiple
+# of 3, then he will move 3 positions forward. If the step he is taking 
+# is a multiple of 5, then he will move 10 positions back. Also, if the 
+# step is a multiple of 15, then he will move 8 positions forward. If the step
+# doesn't satisfy any of the above criteria, then simply move 1 position forward.
 # Implement the function robot_stepper that will output the final
 # position the robot will be at after n steps.
 # Examples:
