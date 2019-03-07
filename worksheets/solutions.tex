@@ -1,0 +1,158 @@
+\documentclass[twoside]{article}
+\usepackage{quiz}
+
+\pagestyle{myheadings}
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily,
+    showstringspaces=false
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    escapeinside={<*}{*>},
+}
+
+\def\semester{March 9, 2019}
+
+%%% Showing solutions %%%
+
+\def\doshow{1}
+\ifx\doshow\showsolution
+\newcommand{\solution}[1]{{\color{red}#1}}
+\newcommand{\solutioncircle}[1]{{\color{red}#1}}
+\newcommand{\solutionimage}[2]{#2} % first arg is question, second is solution
+\newcommand{\solutionblank}[2]{\hbox to #2{\color{red}#1}}
+\else
+\newcommand\solution[1]{} % excludes
+\newcommand{\solutioncircle}[1]{#1} % don't color text but still display it
+\newcommand{\solutionimage}[2]{#1} % first arg is question, second is solution
+\newcommand{\solutionblank}[2]{{\rule{0pt}{2em}\underline{\hbox to #2{}}}}
+\fi
+\usepackage{multicol}
+
+%%% Actual content begins here %%%
+\title{\sc Pioneers in Engineering}
+
+\begin{document}
+\thispagestyle{empty}
+\maketitle
+
+\begin{enumerate}
+%%% Q1: Leap Year Sample %%%
+\q{1}{Leap Year}
+
+\begin{enumerate}
+\item Create a function is is\_leap\_year(year) that determines whether the given year is a leap year. A year is a leap year if the year is divisible by four and the year is not divisible by 100. However, years divisible by 400 are leap years, and are an exception to the 100-year rule.
+
+\begin{lstlisting}
+def is_leap_year(year):
+    """
+    >>> is_leap_year(301)
+    False
+    >>> is_leap_year(304)
+    True
+    >>> is_leap_year(300)
+    False
+    >>> is_leap_year(400)
+    True
+    """
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+\end{lstlisting}
+\end{enumerate}
+
+\vspace{0.2in}
+
+%%% Q2: WWSP? %%%
+\q{}{Robot Stepper}
+
+\begin{enumerate}
+Your robot is at 0 on a number line. It decides to move n time steps but there are a few constraints! If the time step it is currently taking is a multiple of 3, then it will move 3 positions forward. If the step it is taking is a multiple of 5, then it will move 10 positions back. Also, if the step is a multiple of 15, then it will move 8 positions forward. If the step doesn't satisfy any of the above criteria, then simply move 1 position forward. Implement the function robot\_stepper that will output the final position the robot will be at after n time steps.
+
+\begin{lstlisting}
+def robot_stepper(n):
+    """
+    >>> robot_stepper(1)
+    1
+    >>> robot_stepper(3)
+    5
+    >>> robot_stepper(10)
+    -6
+    """
+    total = 0
+    i = 1
+    while (i < n + 1):
+        if (i % 3 == 0 and i % 5 == 0):
+            total += 8
+        elif (i % 3 == 0):
+            total += 3
+        elif (i % 5 == 0):
+            total -= 10
+        else:
+            total += 1
+        i += 1
+    return total
+    
+\end{lstlisting}
+\end{enumerate}
+
+\vspace{0.2in}
+
+
+%%% Q3: Hailstone %%%
+
+\q{3}{Hailstone}
+
+\begin{enumerate}
+\item Douglas Hofstadter's Pulitzer-prize-winning book, Gödel, Escher, Bach, poses the following mathematical puzzle.
+
+\begin{itemize}
+\item Pick a positive integer n as the start.
+\item If n is even, divide it by 2.
+\item If n is odd, multiply it by 3 and add 1.
+\item Continue this process until n is 1.
+\end{itemize}
+The number n will travel up and down but eventually end at 1 (at least for all numbers that have ever been tried -- nobody has ever proved that the sequence will terminate). Analogously, a hailstone travels up and down in the atmosphere before eventually landing on earth. This sequence of values of n is often called a Hailstone sequence. Write a function that takes a single argument with formal parameter name n, prints out the hailstone sequence starting at n, and returns the number of steps in the sequence:
+
+\begin{lstlisting}
+def hailstone(n):
+    """Print the hailstone sequence starting at n and return its
+    length.
+
+    >>> a = hailstone(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    >>> a
+    7
+    """
+    length = 1
+    while n != 1:
+        print(n)
+        if n % 2 == 0:
+            n = n // 2      # Integer division prevents "1.0" output
+        else:
+            n = 3 * n + 1
+        length = length + 1
+    print(n)                # n is now 1
+    return length
+\end{lstlisting}
+\end{enumerate}
+
+
+\end{enumerate}
+\end{document}
